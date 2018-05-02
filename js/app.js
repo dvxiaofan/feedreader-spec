@@ -9,11 +9,11 @@
 // The names and URLs to all of the feeds we'd like available.
 var allFeeds = [
     {
-        name: 'Udacity Blog',
-        url: 'http://blog.udacity.com/feed'
+        name: '知乎每日精选',
+        url: 'https://www.zhihu.com/rss'
     }, {
-        name: 'CSS Tricks',
-        url: 'http://feeds.feedburner.com/CssTricks'
+        name: '腾讯 Blog',
+        url: 'http://cdc.tencent.com/feed/'
     }, {
         name: 'HTML5 Rocks',
         url: 'http://feeds.feedburner.com/html5rocks'

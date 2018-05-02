@@ -29,7 +29,7 @@ var allFeeds = [
  */
 function init() {
     // Load the first feed we've defined (index of 0).
-    // loadFeed(0);
+    loadFeed(0);
 }
 
 /* This function performs everything necessary to load a
@@ -118,7 +118,6 @@ $(function() {
      */
     feedList.on('click', 'a', function() {
         var item = $(this);
-
         $('body').addClass('menu-hidden');
         loadFeed(item.data('id'));
         return false;

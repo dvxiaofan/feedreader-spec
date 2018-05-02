@@ -27,9 +27,8 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
+        /* 测试每个feed都有一个URL
+         * 并且URL不能为空
          */
         it('url not empty', function () {
             for (const feed of allFeeds) {
@@ -39,9 +38,8 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
+        /* 测试每一个feed都有一个name
+         * 并且name不为空
          */
         it('name not empty', function () {
             for (const feed of allFeeds) {
@@ -51,54 +49,34 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* 测试左侧menu页面 */
     describe('The menu', function () {
-
-        var $body, $menuIcon;
-            
-        beforeEach(function () {
-            $body = $('body');
+        // 便于下面重复使用
+        var $body = $('body'),
             $menuIcon = $('.menu-icon-link');
-           
-       });
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+        /* 测试初试状态下， menu菜单是否隐藏  */
         it('elemetn is hidden by default', function () {
-            expect($body.hasClass('menu-hidden')).toBe(true);
-                      
+            expect($body.hasClass('menu-hidden')).toBe(true);           
         });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
-
-        it('changes visibility when the menu icon is clicked', function (done) {
+         /* 测试点击menu图标能否切换menu的显示状态 */
+        it('changes visibility when the menu icon is clicked', function () {
+            // 第一次点击切换状态， menu不隐藏
             $menuIcon.trigger('click');
             expect($body.hasClass('menu-hidden')).toBe(false);
-            
+            // 第二次点击切换状态， menu隐藏
             $menuIcon.trigger('click');
             expect($body.hasClass('menu-hidden')).toBe(true);
-            
         });
-
     });
-
         
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* "Initial Entries" */
     describe('Initial Entries', function () {
 
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
+        /* 测试保证 loadFeed 函数被调用而且工作正常
+         * 即在 .feed 容器元素里面至少有一个 .entry 的元素
          */
         beforeEach(function (done) {
             loadFeed(0, done);
@@ -110,28 +88,20 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /* 测试能否加载新的feed内容 */
     describe('New Feed Selection', function () {
         
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+        /* 测试保证当用 loadFeed 函数加载一个新源的时候内容会真的改变 */
         // new content
         var content;
 
-        // asynchronous loadFeed()
         beforeEach(function (done) {
             content = $('.feed').html();
-
-            // for (let i = allFeeds.length; i > 0; i--) {
-                // load another feed, callback done
-                loadFeed(1, done);
-            // }
+            loadFeed(1, done);
         }, 10000);
 
         it('the content has changed when a new feed was loaded', function (done) {
-            expect(content).not.toBe($('feed').html());
+            expect(content).not.toBe($('.feed').html());            
             done();
         });
     });

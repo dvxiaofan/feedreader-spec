@@ -31,7 +31,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('not empty', function () {
+        it('url not empty', function () {
             for (const feed of allFeeds) {
                 expect(feed.url.length).not.toBe(0);
             }
@@ -43,6 +43,11 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        it('name not empty', function () {
+            for (const feed of allFeeds) {
+                expect(feed.name.length).not.toBe(0);
+            }
+        });
     });
 
 

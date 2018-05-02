@@ -86,18 +86,28 @@ $(function() {
     /* 测试能否加载新的feed内容 */
     describe('New Feed Selection', function () {
         
-        /* 测试保证当用 loadFeed 函数加载一个新源的时候内容会真的改变 */
-        // new content
-        var content;
+        // /* 测试保证当用 loadFeed 函数加载一个新源的时候内容会真的改变 */
 
-        beforeEach(function (done) {
-            content = $('.feed').html();
-            loadFeed(1, done);
+        var oldContent, newContent;
+        let $feed = $('.feed');
+
+        beforeEach(function(done) {
+            loadFeed(1, function() {
+                // 匿名函数，当 loadFeed 返回数据后执行
+                // 在这里获取内容1
+                oldContent = $feed.html();
+                // 获取完毕后开始请求新的数据
+                loadFeed(2, function() {
+                    // 获取内容2
+                    newContent = $feed.html();
+                    // 执行 done，通知下方 it 开始测试（因为到现在为止，两次请求的数据才真正全部返回）
+                    done();
+                });
+          });
         }, 10000);
 
-        it('the content has changed when a new feed was loaded', function (done) {
-            expect(content).not.toBe($('.feed').html());            
-            done();
+        it("the content has changed when a new feed was loaded", function() {
+          expect(oldContent).not.toBe(newContent);
         });
     });
 }());

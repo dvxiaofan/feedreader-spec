@@ -25,6 +25,7 @@ $(function() {
          * 并且URL不能为空
          */
         it('url not empty', function () {
+
             for (const feed of allFeeds) {
                 expect(feed.url.length).not.toBe(0);
             }
@@ -46,7 +47,7 @@ $(function() {
     /* 测试左侧menu页面 */
     describe('The menu', function () {
         // 便于下面重复使用
-        var $body = $('body'),
+        let $body = $('body'),
             $menuIcon = $('.menu-icon-link');
 
         /* 测试初试状态下， menu菜单是否隐藏  */
